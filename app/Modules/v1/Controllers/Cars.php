@@ -25,7 +25,7 @@ class Cars extends Controller
             $cars = $cars->select('registration_no', 'color');
             if($q){
                 $cars = $cars->where('registration_no','like','%'.$q.'%')
-                            ->where('color','like','%'.$q.'%');
+                            ->orWhere('color','like','%'.$q.'%');
             }
             $cars = $cars->limit($limit)
                     ->offset($offset)
@@ -43,13 +43,18 @@ class Cars extends Controller
         }
     }
 
-    public function status($date=null)
+    public function status(Request $request, $date=null)
     {
         $date = $date ?? date('Y-m-d');
+        $q = $request->q ?? '';
         // if(!$date){
         //    return $this->response('Date parameter needed',null,404);
         // }
         $cars = Car::get();
+        if($q){
+            $cars = Car::where('registration_no','like','%'.$q.'%')
+                        ->orWhere('color','like','%'.$q.'%')->get();
+        }
         $reservations = Reservation::where('date',$date)->get();
         $status = [];
         foreach ($cars as $key => $value) {
