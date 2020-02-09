@@ -10,6 +10,7 @@ $router->group(['prefix' => 'api/v1','middleware' => 'api.auth'],  function () u
 
     $router->group(['prefix' => 'cars', 'namespace' => 'App\Modules\v1\Controllers'], function() use($router) {
         $router->get('/status', 'Cars@status');
+        $router->get('/status/{date}', 'Cars@status');
         $router->get('/', 'Cars@index');
         $router->get('/{registration_no}', 'Cars@index');
         $router->post('/', 'Cars@create');

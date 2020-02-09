@@ -43,9 +43,9 @@ class Cars extends Controller
         }
     }
 
-    public function status(Request $request)
+    public function status($date=null)
     {
-        $date = $request->date ?? date('Y-m-d');
+        $date = $date ?? date('Y-m-d');
         // if(!$date){
         //    return $this->response('Date parameter needed',null,404);
         // }
