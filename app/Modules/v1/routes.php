@@ -20,7 +20,7 @@ $router->group(['prefix' => 'api/v1','middleware' => 'api.auth'],  function () u
 
     $router->group(['prefix' => 'reservations', 'namespace' => 'App\Modules\v1\Controllers'], function() use($router) {
         $router->post('/reserve', 'Reservations@reserve');
-        $router->delete('/cancel/{id}', 'Reservations@cancel');
+        $router->delete('/cancel', 'Reservations@cancel');
     });
 });
 ?>

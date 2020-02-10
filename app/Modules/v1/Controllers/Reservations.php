@@ -99,9 +99,12 @@ class Reservations extends Controller
     //      return $this->response('Reservation successfully updated', $reservation, 200);
     //  }
 
-     public function cancel($id)
+     public function cancel(Request $request)
      {
-         $reservation = Reservation::where('id', $id)->first();
+         $registration_no = $request->registration_no ?? '';
+         $date = $request->date ?? '';
+         $reservation = Reservation::where('registration_no', $registration_no)
+                                    ->where('date', $date)->first();
          if(!$reservation){
             return $this->response('Reservation not found',null,404);
          }
