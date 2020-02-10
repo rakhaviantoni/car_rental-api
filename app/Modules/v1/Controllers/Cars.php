@@ -51,7 +51,7 @@ class Cars extends Controller
         //    return $this->response('Date parameter needed',null,404);
         // }
         $cars = Car::get();
-        if($q){
+        if(strlen($q)>0){
             $cars = Car::where('registration_no','like','%'.$q.'%')
                         ->orWhere('color','like','%'.$q.'%')->get();
         }
@@ -79,7 +79,7 @@ class Cars extends Controller
                 $status[$key]['customer'] = '';
             }
         }
-        return $this->response('Cars status on '.$date.' found',$status,200);
+        return $this->response('Cars status on '.$date.''.(strlen($q)>0?' contains '.$q:'').' found',$status,200);
     }
 
     public function create(Request $req)
