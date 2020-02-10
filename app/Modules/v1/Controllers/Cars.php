@@ -65,6 +65,7 @@ class Cars extends Controller
                         $status[$key]['color'] = $value->color;
                         $status[$key]['status'] = 'Rented';
                         $status[$key]['customer'] = $val->customer;
+                    break;
                     } else {
                         $status[$key]['registration_no'] = $value->registration_no;
                         $status[$key]['color'] = $value->color;
